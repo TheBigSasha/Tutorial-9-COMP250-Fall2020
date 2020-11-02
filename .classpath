@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="/Tutorial9_SortingAlgorithmDragRace/src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/RuntimeTester-Windows"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -5,15 +5,32 @@ import RuntimeTester.*;
 public class SortingAlgorithms {
     private static Random rand = new Random(24601);
 
+    /**
+     * Merges subarrays of dataset, first being from start to mid,
+     * second being from mid+1 to end.
+     * @param dataset       Array to be merged
+     * @param startIDX      Start index
+     * @param midIDX        Mid index (end of first array, start of second)
+     * @param endIDX        End index
+     */
     private static void merge(String[] dataset, int startIDX, int midIDX, int endIDX) {
 
     }
 
-
+    /**
+     * The recursive helper of mergeSort, it divides and conquers.
+     * @param dataset       Array to be sorted
+     * @param startIDX      Start index of the operation
+     * @param endIDX        End index of the operation
+     */
     private static void mergeSortRecursive(String[] dataset, int startIDX, int endIDX) {
 
     }
 
+    /**
+     * Sorts the array, hopefully fast
+     * @param dataset       Array to be sorted
+     */
     public static void mergeSort(String[] dataset) {
 
     }
@@ -42,7 +59,7 @@ public class SortingAlgorithms {
             dataset[j + 1] = key;
         }
     }
-    
+
     public static void main(String args[]) {
         testSorting();
         Visualizer.launch(SortingAlgorithms.class);

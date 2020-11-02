@@ -33,7 +33,7 @@ public class SortingAlgorithms {
 
         //This bit merges the arrays such that they are in order! This is where the fun happens!
         while (indexAtLeft < sizeOfFirst && indexAtRight < sizeOfSecond) {
-            if (Left[indexAtLeft].compareTo(Right[indexAtRight]) >= 0) {                  //Adds into the final output if the left is less than the right!
+            if (Left[indexAtLeft].compareTo(Right[indexAtRight]) <= 0) {                  //Adds into the final output if the left is less than the right!
                 dataset[indexAtMainDataset] = Left[indexAtLeft];
                 indexAtLeft++;
             }
@@ -41,6 +41,7 @@ public class SortingAlgorithms {
                 dataset[indexAtMainDataset] = Right[indexAtRight];                  //If the right is bigger, it gets added instead!
                 indexAtRight++;
             }
+            indexAtMainDataset++;
         }
 
         //Take the remaining items from the arrays if they weren't got before
@@ -114,9 +115,9 @@ public class SortingAlgorithms {
         fillList(testSubject);
         String[] subjectII = Arrays.copyOf(testSubject,testSubject.length);
         Arrays.sort(testSubject);
-        insertionSort(subjectII);
+        mergeSort(subjectII);
         for(int i = 0; i < testSubject.length; i++){
-            if(!testSubject[i].equals(subjectII[i])) System.out.println("Error! Sort failed at index " + i);
+            if(!testSubject[i].equals(subjectII[i])) System.out.println("Error! Sort failed at index " + i + subjectII[i] + testSubject[i]);
         }
 
     }

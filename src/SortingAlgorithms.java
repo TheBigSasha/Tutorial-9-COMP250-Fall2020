@@ -4,7 +4,6 @@ import RuntimeTester.*;
 
 public class SortingAlgorithms {
     private static Random rand = new Random(24601);
-
     /**
      * Merges subarrays of dataset, first being from start to mid,
      * second being from mid+1 to end.
@@ -13,18 +12,63 @@ public class SortingAlgorithms {
      * @param midIDX        Mid index (end of first array, start of second)
      * @param endIDX        End index
      */
-    private static void merge(String[] dataset, int startIDX, int midIDX, int endIDX) {
+    public static void merge(String[] dataset, int startIDX, int midIDX, int endIDX)
+    {
+        //Determine Sizes
+        int sizeOfFirst = midIDX - startIDX + 1;
+        int sizeOfSecond = endIDX - midIDX;
 
+        //Create Temporary Arrays
+        String[] Left = new String[sizeOfFirst];
+        String[] Right = new String[sizeOfSecond];
+
+        //Copy into temporaries
+        for (int i = 0; i < sizeOfFirst; i++)
+            Left[i] = dataset[startIDX + i];
+        for (int i = 0; i < sizeOfSecond; i++)
+            Right[i] = dataset[midIDX + 1 + i];
+
+        int indexAtLeft = 0, indexAtRight = 0;
+        int indexAtMainDataset = startIDX;
+
+        //This bit merges the arrays such that they are in order! This is where the fun happens!
+        while (indexAtLeft < sizeOfFirst && indexAtRight < sizeOfSecond) {
+            if (Left[indexAtLeft].compareTo(Right[indexAtRight]) >= 0) {                  //Adds into the final output if the left is less than the right!
+                dataset[indexAtMainDataset] = Left[indexAtLeft];
+                indexAtLeft++;
+            }
+            else {
+                dataset[indexAtMainDataset] = Right[indexAtRight];                  //If the right is bigger, it gets added instead!
+                indexAtRight++;
+            }
+        }
+
+        //Take the remaining items from the arrays if they weren't got before
+        while (indexAtLeft < sizeOfFirst) {
+            dataset[indexAtMainDataset] = Left[indexAtLeft];
+            indexAtLeft++;
+            indexAtMainDataset++;
+        }
+        while (indexAtRight < sizeOfSecond) {
+            dataset[indexAtMainDataset] = Right[indexAtRight];
+            indexAtRight++;
+            indexAtMainDataset++;
+        }
     }
 
-    /**
-     * The recursive helper of mergeSort, it divides and conquers.
-     * @param dataset       Array to be sorted
-     * @param startIDX      Start index of the operation
-     * @param endIDX        End index of the operation
-     */
-    private static void mergeSortRecursive(String[] dataset, int startIDX, int endIDX) {
+    public static void mergeSortRecursive(String[] dataset, int startIDX, int endIDX)
+    {
+        if (startIDX < endIDX) {
+            // Find the middle point
+            int midIDX = (startIDX + endIDX) / 2;
 
+            // Sort first and second halves
+            mergeSortRecursive(dataset, startIDX, midIDX);
+            mergeSortRecursive(dataset, midIDX + 1, endIDX);
+
+            // Merge the sorted halves
+            merge(dataset, startIDX, midIDX, endIDX);
+        }
     }
 
     /**
@@ -32,7 +76,7 @@ public class SortingAlgorithms {
      * @param dataset       Array to be sorted
      */
     public static void mergeSort(String[] dataset) {
-
+        mergeSortRecursive(dataset, 0 , dataset.length - 1);
     }
 
     public static void bubbleSort(String[] dataset) {

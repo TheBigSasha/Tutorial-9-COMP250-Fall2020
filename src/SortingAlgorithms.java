@@ -1,9 +1,16 @@
 import java.util.Arrays;
 import java.util.Random;
+import java.util.SortedSet;
+
 import RuntimeTester.*;
 
-public class SortingAlgorithms {
+public class SortingAlgorithms<E extends Comparable> {
     private static Random rand = new Random(24601);
+    private static final SortingAlgorithms<String> sortingAlgorithms = new SortingAlgorithms<>();
+
+    public SortingAlgorithms(){
+
+    }
 
     /**
      * Merges subarrays of dataset, first being from start to mid,
@@ -13,7 +20,7 @@ public class SortingAlgorithms {
      * @param midIDX        Mid index (end of first array, start of second)
      * @param endIDX        End index
      */
-    private static void merge(String[] dataset, int startIDX, int midIDX, int endIDX) {
+    private void merge(E[] dataset, int startIDX, int midIDX, int endIDX) {
 
     }
 
@@ -23,7 +30,7 @@ public class SortingAlgorithms {
      * @param startIDX      Start index of the operation
      * @param endIDX        End index of the operation
      */
-    private static void mergeSortRecursive(String[] dataset, int startIDX, int endIDX) {
+    private  void mergeSortRecursive(E[] dataset, int startIDX, int endIDX) {
 
     }
 
@@ -31,26 +38,26 @@ public class SortingAlgorithms {
      * Sorts the array, hopefully fast
      * @param dataset       Array to be sorted
      */
-    public static void mergeSort(String[] dataset) {
+    public void mergeSort(E[] dataset) {
 
     }
 
-    public static void bubbleSort(String[] dataset) {
+    public void bubbleSort(E[] dataset) {
         int wall = dataset.length;
         for (int i = 0; i < wall-1; i++)
             for (int j = 0; j < wall-i-1; j++)
                 if (dataset[j].compareTo(dataset[j+1]) > 0)
                 {
-                    String temp = dataset[j];
+                    E temp = dataset[j];
                     dataset[j] = dataset[j+1];
                     dataset[j+1] = temp;
                 }
     }
 
-    public static void insertionSort(String[] dataset) {
+    public void insertionSort(E[] dataset) {
         int n = dataset.length;
         for (int i = 1; i < n; ++i) {
-            String key = dataset[i];
+            E key = dataset[i];
             int j = i - 1;
             while (j >= 0 && dataset[j].compareTo(key) > 0) {
                 dataset[j + 1] = dataset[j];
@@ -70,7 +77,7 @@ public class SortingAlgorithms {
         fillList(testSubject);
         String[] subjectII = Arrays.copyOf(testSubject,testSubject.length);
         Arrays.sort(testSubject);
-        insertionSort(subjectII);
+        sortingAlgorithms.insertionSort(subjectII);
         for(int i = 0; i < testSubject.length; i++){
             if(!testSubject[i].equals(subjectII[i])) System.out.println("Error! Sort failed at index " + i);
         }
@@ -88,7 +95,7 @@ public class SortingAlgorithms {
         String[] test = new String[(int) size];
         fillList(test);
         long startTime = System.nanoTime();
-        mergeSort(test);
+        sortingAlgorithms.mergeSort(test);
         long endTime = System.nanoTime();
         return endTime - startTime;
     }
@@ -98,7 +105,7 @@ public class SortingAlgorithms {
         String[] test = new String[(int) size];
         fillList(test);
         long startTime = System.nanoTime();
-        insertionSort(test);
+        sortingAlgorithms.insertionSort(test);
         long endTime = System.nanoTime();
         return endTime - startTime;
     }
@@ -108,7 +115,7 @@ public class SortingAlgorithms {
         String[] test = new String[(int) size];
         fillList(test);
         long startTime = System.nanoTime();
-        bubbleSort(test);
+        sortingAlgorithms.bubbleSort(test);
         long endTime = System.nanoTime();
         return endTime - startTime;
     }

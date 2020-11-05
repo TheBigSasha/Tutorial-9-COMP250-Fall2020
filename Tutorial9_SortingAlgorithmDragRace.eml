@@ -4,6 +4,6 @@
 	<exclude-output/>
 	<contentEntry url="file://$MODULE_DIR$"/>
 	<levels>
-		<level name="RuntimeTester-Windows" value="project"/>
+		<level name="RuntimeTester-MacOS" value="project"/>
 	</levels>
 </component>

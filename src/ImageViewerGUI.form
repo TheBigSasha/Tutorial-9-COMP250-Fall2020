@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="TutorialV.ImageViewerGUI">
+  <grid id="27dc6" binding="mainPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none">
+      <title-color color="-4473925"/>
+    </border>
+    <children>
+      <grid id="cb440" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints border-constraint="North"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="82a80" class="javax.swing.JButton" binding="buttonEasy">
+            <constraints/>
+            <properties>
+              <text value="Easy 💚"/>
+            </properties>
+          </component>
+          <component id="6868b" class="javax.swing.JButton" binding="buttonMedium">
+            <constraints/>
+            <properties>
+              <text value="Medium 🎯"/>
+            </properties>
+          </component>
+          <component id="ff687" class="javax.swing.JButton" binding="buttonHard">
+            <constraints/>
+            <properties>
+              <text value="Hard 🔥"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>

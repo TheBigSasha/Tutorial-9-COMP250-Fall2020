@@ -21,7 +21,46 @@ public class SortingAlgorithms<E extends Comparable> {
      * @param endIDX        End index
      */
     private void merge(E[] dataset, int startIDX, int midIDX, int endIDX) {
+            int sizeOfFirst = midIDX - startIDX + 1;
+            int sizeOfSecond = endIDX - midIDX;
 
+            E[] left = (E[]) new Comparable[sizeOfFirst];
+            E[] right = (E[]) new Comparable[sizeOfSecond];
+
+            for(int i = 0; i < sizeOfFirst; i++){
+                left[i] = dataset[startIDX + i];
+            }
+
+            for(int i = 0; i < sizeOfSecond; i++){
+                right[i] = dataset[midIDX + 1 + i];
+            }
+
+            int indexAtLeft = 0; int indexAtRight = 0;
+            int indexAtDataset = startIDX;
+
+            while(indexAtLeft < sizeOfFirst && indexAtRight < sizeOfSecond){
+                if(left[indexAtLeft].compareTo(right[indexAtRight]) <= 0){
+                    dataset[indexAtDataset] = left[indexAtLeft];
+                    indexAtLeft++;
+                }else{
+                    dataset[indexAtDataset] = right[indexAtRight];
+                    indexAtRight++;
+                }
+                indexAtDataset++;
+        }
+
+
+            while(indexAtLeft < sizeOfFirst){
+                dataset[indexAtDataset] = left[indexAtLeft];
+                indexAtLeft++;
+                indexAtDataset++;
+            }
+
+        while(indexAtRight < sizeOfSecond){
+            dataset[indexAtDataset] = right[indexAtRight];
+            indexAtRight++;
+            indexAtDataset++;
+        }
     }
 
     /**
@@ -31,7 +70,13 @@ public class SortingAlgorithms<E extends Comparable> {
      * @param endIDX        End index of the operation
      */
     private  void mergeSortRecursive(E[] dataset, int startIDX, int endIDX) {
+        if (startIDX <endIDX) {
+            int midIDX = (startIDX + endIDX) / 2;
+            mergeSortRecursive(dataset, startIDX, midIDX);
+            mergeSortRecursive(dataset, midIDX + 1, endIDX);
 
+            merge(dataset,startIDX, midIDX, endIDX);
+        }
     }
 
     /**
@@ -39,7 +84,7 @@ public class SortingAlgorithms<E extends Comparable> {
      * @param dataset       Array to be sorted
      */
     public void mergeSort(E[] dataset) {
-
+        mergeSortRecursive(dataset,0,dataset.length-1);
     }
 
     public void bubbleSort(E[] dataset) {
@@ -73,20 +118,20 @@ public class SortingAlgorithms<E extends Comparable> {
     }
 
     private static void testSorting() {
-        String[] testSubject = new String[10];
+        String[] testSubject = new String[777777];
         fillList(testSubject);
         String[] subjectII = Arrays.copyOf(testSubject,testSubject.length);
         Arrays.sort(testSubject);
-        sortingAlgorithms.insertionSort(subjectII);
+        sortingAlgorithms.mergeSort(subjectII);
         for(int i = 0; i < testSubject.length; i++){
-            if(!testSubject[i].equals(subjectII[i])) System.out.println("Error! Sort failed at index " + i);
+            if(!testSubject[i].equals(subjectII[i])){ System.out.println("Error! Sort failed at index " + i);}
         }
 
     }
 
     public static void fillList(String[] list) {
         for (int i = 0; i < list.length; i++) {
-            list[i] = ((char) rand.nextInt(400) + " Test " + i + " ---- " + " " + (char) rand.nextInt(400));
+            list[i] = ((char) rand.nextInt(i + 1) + " Test " + i + " ---- " + " " + (char) rand.nextInt(400));
         }
     }
 

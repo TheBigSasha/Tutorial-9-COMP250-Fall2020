@@ -155,14 +155,17 @@ class ComparableColor extends Color implements Comparable{
     }
 
     public int compareTo(Color c) {
-        return this.getRGB() - c.getRGB();
+        return this.getRed() - c.getRed();
     }
 
     @Override
     public int compareTo(Object o) {
         if(o instanceof Integer) return this.getRGB() - (Integer) o;
+        if(o instanceof  Color) return this.compareTo((Color) o);
         return 0;
     }
+
+
 
     public static ComparableColor[] toComparable(Color[] input){
         ComparableColor[] output = new ComparableColor[input.length];
